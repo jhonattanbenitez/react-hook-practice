@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
+import uuid from 'react-uuid';
 
-const Formulario = () => {
+const Formulario = ({crearCita}) => {
   // crear State de citas
 
   const [cita, actualizarCita] = useState({
@@ -37,10 +38,14 @@ const Formulario = () => {
       actualizarError(true);
       return;
     }
+    //eliminar el mensaje previo
+    actualizarError(false);
 
     //asignar UN ID
-
+    cita.id = uuid();
+   
     //Crear la cita
+    crearCita(cita);
 
     //Reiniciar el form
   };
