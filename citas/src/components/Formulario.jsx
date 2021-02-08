@@ -3,28 +3,54 @@ import React, { Fragment, useState } from "react";
 const Formulario = () => {
   // crear State de citas
 
-    const [cita, actualizarCita] = useState({
-    mascota: '',
-    propietario: '',
-    fecha:'',
-    hora:'',
-    sintomas: ''
+  const [cita, actualizarCita] = useState({
+    mascota: "",
+    propietario: "",
+    fecha: "",
+    hora: "",
+    sintomas: "",
   });
+
+  const [error, actualizarError] = useState(false);
 
   //función que se ejectua cada vez que el usuario escribe algo
   const actualizarState = (e) => {
-    actualizarCita ({
+    actualizarCita({
       ...cita,
-      [e.target.name] : e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   };
-  //Extraer los valores de los campos del formulario 
-  const {mascota, propietario, fecha, hora, sintomas} = cita;
+  //Extraer los valores de los campos del formulario
+  const { mascota, propietario, fecha, hora, sintomas } = cita;
+  //cuando el usuario presiona agregar cita
+  const submitCita = (e) => {
+    e.preventDefault();
 
+    //Validar
+    if (
+      mascota.trim() === "" ||
+      propietario.trim() === "" ||
+      fecha.trim() === "" ||
+      hora.trim() === "" ||
+      sintomas.trim() === ""
+    ) {
+      actualizarError(true);
+      return;
+    }
+
+    //asignar UN ID
+
+    //Crear la cita
+
+    //Reiniciar el form
+  };
   return (
     <Fragment>
       <h2>Crear Cita</h2>
-      <form action="">
+      {
+        error ? <p className="alerta-error">Todos los campos son obligatorios</p>: null
+      }
+      <form action="" onSubmit={submitCita}>
         <label htmlFor="">Nombre Mascota</label>
         <input
           type="text"
@@ -33,6 +59,7 @@ const Formulario = () => {
           placeholder="nombre mascota"
           onChange={actualizarState}
           value={mascota}
+          required
         />
         <label htmlFor="">Nombre del dueño</label>
         <input
