@@ -1,6 +1,7 @@
 import React, {Fragment, useState, useEffect} from "react";
 import Formulario from './components/Formulario';
 import Cita from './components/Cita';
+import PropTypes from 'prop-types';
 
 function App() {
   //citas en local storage 
@@ -18,7 +19,7 @@ function App() {
       }else{
         localStorage.setItem("citas", JSON.stringify([]));
       }
-   }, [citas])
+   }, [citas, citasIniciales])
 
   //función que modifique las citas actuales y agregue una nueva
 
@@ -64,4 +65,7 @@ function App() {
   );
 }
 
+Formulario.propTypes = {
+  crearCita: PropTypes.func.isRequired
+}
 export default App;
