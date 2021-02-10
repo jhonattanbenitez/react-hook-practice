@@ -1,25 +1,50 @@
-import React, {Fragment, useState} from 'react';
+import React, { Fragment, useState } from "react";
+import Error from './Error';
 
 const Pregunta = () => {
-    //definir el state
+  //definir el state
+  const [cantidad, setCantidad] = useState(0);
+  const [error, setError] = useState(false);
 
-    return (  
-        <Fragment>
-            <h2>Introduce tu presupuesto</h2>
-            <form>
-                <input 
-                type="number"
-                className="u-full-width"/>
-                <input 
-                type="submit"
-                className="button-primary u-full-width"
-                value="Definir presupuesto"
-                
-                />
-            </form>
+  //función que lee el presupuesto
 
-        </Fragment>
-    );
+  const definirPresupuesto = (e) => {
+    setCantidad(parseInt(e.target.value, 10));
+  };
+    // Submit para definir el presupuesto
+    const agregarPresupuesto = e => {
+        e.preventDefault();
+
+        // Validar
+        if(cantidad < 1 || isNaN( cantidad ) ) {
+            setError(true);
+            return;
+        }
+
+        // si se pasa la validación
+        setError(false);
+        
 }
- 
+  return (
+    <Fragment>
+      <h2>Introduce tu presupuesto</h2>
+      {error ? <Error mensaje="el presupuesto es incorrecto"/> : null}
+      <form
+       onSubmit={agregarPresupuesto}>
+        <input
+          type="number"
+          className="u-full-width"
+          onChange={definirPresupuesto}
+        />
+        <input
+          type="submit"
+          className="button-primary u-full-width"
+          value="Definir presupuesto"
+         
+        />
+      </form>
+    </Fragment>
+  );
+};
+
 export default Pregunta;
