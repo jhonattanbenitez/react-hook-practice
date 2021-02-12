@@ -7,7 +7,7 @@ const Formulario = ({setGasto, setCrearGasto}) => {
   const [cantidad, setCantidad] = useState(0);
   const [error, setError] = useState(false);
 
-  //cuando el usuario agrega un gasto
+    //cuando el usuario agrega un gasto
 
   const agregarGasto = (e) => {
     e.preventDefault();
