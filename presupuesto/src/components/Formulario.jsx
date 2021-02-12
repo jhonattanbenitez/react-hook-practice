@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Error from "./Error";
 import { v4 as uuidv4 } from "uuid";
 
-const Formulario = ({agregarNuevoGasto}) => {
+const Formulario = ({setGasto, setCrearGasto}) => {
   const [nombregasto, setNombregasto] = useState("");
   const [cantidad, setCantidad] = useState(0);
   const [error, setError] = useState(false);
@@ -26,7 +26,9 @@ const Formulario = ({agregarNuevoGasto}) => {
     };
      // pasar el gasto al componente de listado de gastos
 
-    agregarNuevoGasto(gasto);
+     setGasto(gasto);
+     setCrearGasto(true);
+
 
     //resetear el forumalario
     setNombregasto('');
