@@ -1,5 +1,17 @@
 import React, { useState } from "react";
-import { Campo, Label, Select, InputRadio, Button } from "./formulario.styles";
+import {
+  obtenerDiferenciaYear,
+  calcularMarca,
+  obtenerPlan,
+} from "../../helper";
+import {
+  Campo,
+  Label,
+  Select,
+  InputRadio,
+  Button,
+  Error,
+} from "./formulario.styles";
 
 const Formulario = () => {
   const [datos, setDatos] = useState({
@@ -7,6 +19,7 @@ const Formulario = () => {
     year: "",
     plan: "",
   });
+  const [error, setError] = useState(false);
 
   //estraer los valores del state
 
@@ -20,8 +33,44 @@ const Formulario = () => {
     });
   };
 
+  //cuando el usuario presiona cotizar
+
+  const cotizarSeguro = (e) => {
+    e.preventDefault();
+    if (marca.trim() === "" || year.trim() === "" || plan.trim() === "") {
+      setError(true);
+      return;
+    }
+    setError(false);
+    // Base de 200000
+    let resultado = 200000;
+
+    // obetener la diferencia de años
+
+    const diferencia = obtenerDiferenciaYear(year);
+
+    //por cada año hay que sumar el 3%
+    resultado += (diferencia * 3 * resultado) / 100;
+    console.log(resultado);
+    //americano 15%
+    //Asiático 5%
+    //Europeo 30%
+    resultado = calcularMarca(marca) * resultado;
+
+    console.log(resultado);
+
+    //Básico aumenta 20%
+    //Completo 50&
+
+    const incrmentoPlan = obtenerPlan(plan);
+    resultado = parseFloat(incrmentoPlan * resultado).toFixed(2);
+    console.log(resultado);
+    //Total
+  };
+
   return (
-    <form>
+    <form onSubmit={cotizarSeguro}>
+      {error ? <Error>Todos los campos son obligatorios</Error> : null}
       <Campo>
         <Label>Marca: </Label>
         <Select name="marca" value={marca} id="" onChange={getInformation}>
@@ -35,6 +84,7 @@ const Formulario = () => {
         <Label>Año: </Label>
         <Select name="year" value={year} id="" onChange={getInformation}>
           <option value="">-- Seleccione --</option>
+          <option value="2021">2022</option>
           <option value="2021">2021</option>
           <option value="2020">2020</option>
           <option value="2019">2019</option>
@@ -66,7 +116,7 @@ const Formulario = () => {
         />
         Completo
       </Campo>
-      <Button type="button">Cotizar</Button>
+      <Button type="submit">Cotizar</Button>
     </form>
   );
 };
