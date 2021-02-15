@@ -13,7 +13,7 @@ import {
   Error,
 } from "./formulario.styles";
 
-const Formulario = () => {
+const Formulario = ({setResumen}) => {
   const [datos, setDatos] = useState({
     marca: "",
     year: "",
@@ -66,6 +66,10 @@ const Formulario = () => {
     resultado = parseFloat(incrmentoPlan * resultado).toFixed(2);
     console.log(resultado);
     //Total
+    setResumen({
+        cotizacion: resultado,
+        datos
+    })
   };
 
   return (
