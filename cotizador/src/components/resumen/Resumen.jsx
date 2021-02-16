@@ -1,6 +1,7 @@
 import React from "react";
-import {ContenedorResumen} from './resumen.styled';
-import { primerMayuscula } from '../../helper';
+import { ContenedorResumen } from "./resumen.styled";
+import { primerMayuscula } from "../../helper";
+import PropTypes from "prop-types";
 
 const Resumen = ({ datos }) => {
   //extraer datos
@@ -20,5 +21,9 @@ const Resumen = ({ datos }) => {
     </ContenedorResumen>
   );
 };
+
+Resumen.propTypes = {
+  datos: PropTypes.object.isRequired
+}
 
 export default Resumen;

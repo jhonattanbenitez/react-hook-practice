@@ -13,6 +13,8 @@ import {
   Error,
 } from "./formulario.styles";
 
+import PropTypes from 'prop-types';
+
 const Formulario = ({setResumen}) => {
   const [datos, setDatos] = useState({
     marca: "",
@@ -67,7 +69,7 @@ const Formulario = ({setResumen}) => {
     console.log(resultado);
     //Total
     setResumen({
-        cotizacion: resultado,
+        cotizacion: Number(resultado),
         datos
     })
   };
@@ -124,5 +126,10 @@ const Formulario = ({setResumen}) => {
     </form>
   );
 };
+
+Formulario.propTypes = {
+  setResumen: PropTypes.func.isRequired
+
+}
 
 export default Formulario;

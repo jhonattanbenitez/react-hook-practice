@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const P = styled.p`
+export const Mensaje = styled.p`
      background-color: rgb(127, 224, 237);
      padding: 1rem;
      text-align: center;
