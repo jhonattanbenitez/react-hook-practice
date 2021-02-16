@@ -1,5 +1,6 @@
 import React from "react";
 import {ContenedorResumen} from './resumen.styled';
+import { primerMayuscula } from '../../helper';
 
 const Resumen = ({ datos }) => {
   //extraer datos
@@ -12,8 +13,8 @@ const Resumen = ({ datos }) => {
     <ContenedorResumen>
       <h2>Resumen de cotización</h2>
       <ul>
-        <li>Marca: {marca} </li>
-        <li>Plan: {plan}</li>
+        <li>Marca: {primerMayuscula(marca)} </li>
+        <li>Plan: {primerMayuscula(plan)}</li>
         <li>Año: {year}</li>
       </ul>
     </ContenedorResumen>
