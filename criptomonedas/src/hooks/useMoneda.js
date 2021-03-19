@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import {Label, Select} from './useMoneda.styled';
 
 const useMoneda = (label, stateInicial, opciones) => {
   //State  custom hook
@@ -6,9 +7,10 @@ const useMoneda = (label, stateInicial, opciones) => {
 
   const Seleccionar = () => (
     <Fragment>
-      <label>{label}</label>
-      <select 
+      <Label>{label}</Label>
+      <Select 
         onChange={e => setState(e.target.value)}
+        value={state}
       >
         <option value="">-Seleccione moneda-</option>
         {opciones.map((opcion) => (
@@ -16,7 +18,7 @@ const useMoneda = (label, stateInicial, opciones) => {
             {opcion.nombre}
           </option>
         ))}
-      </select>
+      </Select>
     </Fragment>
   );
 
