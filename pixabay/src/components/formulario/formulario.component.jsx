@@ -4,6 +4,7 @@ import Error from "../error/error.component";
 const Formulario = ({ setBusqueda }) => {
   const [termino, setTermino] = useState("");
   const [error, setError] = useState(false);
+  
   const buscarImagenes = (e) => {
     e.preventDefault();
 
